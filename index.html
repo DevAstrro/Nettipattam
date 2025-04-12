@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Nettipattam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes golden-glow {
+            0% { box-shadow: 0 0 20px rgba(255,215,0,0.3); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.6); }
+            100% { box-shadow: 0 0 20px rgba(255,215,0,0.3); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shine {
+            100% { left: 125%; }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: radial-gradient(circle at center, #daa520, #8B0000);
+            color: white;
+            animation: float 3s ease-in-out infinite, golden-glow 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header:hover {
+            transform: scale(1.02);
+            animation: float 1.2s ease-in-out infinite, golden-glow 1s ease-in-out infinite;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.2), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        header:hover::before {
+            animation: shine 1.5s;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.2s; }
+        .product-card:nth-child(2) { animation-delay: 0.4s; }
+        .product-card:nth-child(3) { animation-delay: 0.6s; }
+        .product-card:nth-child(4) { animation-delay: 0.8s; }
+        .product-card:nth-child(5) { animation-delay: 1s; }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotateZ(-1deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
+            border-radius: 4px;
+            background: radial-gradient(circle, #ffd700, #daa520);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-image:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 8px 20px rgba(218,165,32,0.3);
+        }
+
+        .craftsmanship-text {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 25px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            color: #444;
+            border-top: 2px solid #daa520;
+            border-bottom: 2px solid #daa520;
+            line-height: 1.8;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(139,0,0,0.95);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease-in-out;
+            font-size: 0.95em;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+        }
+
+        .notification.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(10px);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            letter-spacing: 1.5px;
+            margin: 10px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .price {
+            font-weight: 600;
+            color: #228B22;
+            font-size: 1.3em;
+            margin: 15px 0;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #8B0000, #6B0000);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            letter-spacing: 0.8px;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="void(0)">
+        <h1>Golden Nettipattam</h1>
+        <p>Traditional Handcrafted Elephant Caparisons</p>
+    </header>
+
+    <div class="craftsmanship-text">
+        ✨ Each Nettipattam is meticulously handcrafted over weeks, imbued with generations of traditional wisdom and loving care. Using ancient techniques passed down through our family, we create these golden masterpieces that honor both elephants and Kerala's rich cultural heritage. Every fold and ornament tells a story of devotion to craft. ✨
+    </div>
+
+    <div class="product-container">
+        <!-- Product cards remain same as before -->
+        <div class="product-card">
+            <div class="product-image"></div>
+            <h2 class="product-title">Basic Nettipattam (1ft)</h2>
+            <p class="price">₹ 1,500</p>
+            <button class="buy-btn" onclick="showNotification()">Order Now</button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image"></div>
+            <h2 class="product-title">Medium Nettipattam (2ft)</h2>
+            <p class="price">₹ 3,200</p>
+            <button class="buy-btn" onclick="showNotification()">Order Now</button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image"></div>
+            <h2 class="product-title">Large Nettipattam (3ft)</h2>
+            <p class="price">₹ 5,500</p>
+            <button class="buy-btn" onclick="showNotification()">Order Now</button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image"></div>
+            <h2 class="product-title">Extra Large Nettipattam (4ft)</h2>
+            <p class="price">₹ 8,000</p>
+            <button class="buy-btn" onclick="showNotification()">Order Now</button>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image"></div>
+            <h2 class="product-title">RoyalNettipattam (5ft)</h2>
+            <p class="price">₹ 12,000</p>
+            <button class="buy-btn" onclick="showNotification()">Order Now</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact us: +91 99957 46960</p>
+        <p>Crafted with ❤️ in Kerala</p>
+    </footer>
+
+    <div class="notification" id="notification">
+        🛠️ Website Under Development - Orders Opening Soon!
+    </div>
+
+    <script>
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('active');
+            setTimeout(() => {
+                notification.classList.remove('active');
+            }, 2800);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.transform = `
+                    translateY(-5px)
+                    rotateX(${(y - rect.height/2)/15}deg)
+                    rotateY(${-(x - rect.width/2)/15}deg)
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
